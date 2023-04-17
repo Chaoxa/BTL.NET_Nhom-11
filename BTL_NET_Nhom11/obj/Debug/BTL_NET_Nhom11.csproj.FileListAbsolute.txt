@@ -1,0 +1,14 @@
+C:\Users\tranq\source\repos\BTL_NET_Nhom11\BTL_NET_Nhom11\bin\Debug\BTL_NET_Nhom11.exe.config
+C:\Users\tranq\source\repos\BTL_NET_Nhom11\BTL_NET_Nhom11\bin\Debug\BTL_NET_Nhom11.exe
+C:\Users\tranq\source\repos\BTL_NET_Nhom11\BTL_NET_Nhom11\obj\Debug\BTL_NET_Nhom11.csproj.AssemblyReference.cache
+C:\Users\tranq\source\repos\BTL_NET_Nhom11\BTL_NET_Nhom11\obj\Debug\BTL_NET_Nhom11.csproj.SuggestedBindingRedirects.cache
+C:\Users\tranq\source\repos\BTL_NET_Nhom11\BTL_NET_Nhom11\obj\Debug\BTL_NET_Nhom11.Form1.resources
+C:\Users\tranq\source\repos\BTL_NET_Nhom11\BTL_NET_Nhom11\obj\Debug\BTL_NET_Nhom11.Form2.resources
+C:\Users\tranq\source\repos\BTL_NET_Nhom11\BTL_NET_Nhom11\obj\Debug\BTL_NET_Nhom11.Form3.resources
+C:\Users\tranq\source\repos\BTL_NET_Nhom11\BTL_NET_Nhom11\obj\Debug\BTL_NET_Nhom11.Properties.Resources.resources
+C:\Users\tranq\source\repos\BTL_NET_Nhom11\BTL_NET_Nhom11\obj\Debug\BTL_NET_Nhom11.csproj.GenerateResource.cache
+C:\Users\tranq\source\repos\BTL_NET_Nhom11\BTL_NET_Nhom11\obj\Debug\BTL_NET_Nhom11.csproj.CoreCompileInputs.cache
+C:\Users\tranq\source\repos\BTL_NET_Nhom11\BTL_NET_Nhom11\obj\Debug\BTL_NET_Nhom11.exe
+C:\Users\tranq\source\repos\BTL_NET_Nhom11\BTL_NET_Nhom11\obj\Debug\BTL_NET_Nhom11.pdb
+C:\Users\tranq\source\repos\BTL_NET_Nhom11\BTL_NET_Nhom11\bin\Debug\BTL_NET_Nhom11.pdb
+C:\Users\tranq\source\repos\BTL_NET_Nhom11\BTL_NET_Nhom11\obj\Debug\BTL_NET_Nhom11.Form4.resources
