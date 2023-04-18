@@ -18,7 +18,7 @@ namespace BTL_NET_Nhom11
         {
             InitializeComponent();
         }
-        string Strconn = @"Data Source=CHAOXA\MSSQLSERVER01;Initial Catalog=SQLQuanlykhachsan_gr11;Integrated Security=True";
+      string Strconn = @"Data Source=DESKTOP-60CHILE;Initial Catalog=SQLQuanlykhachsan_gr11;Integrated Security=True";
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {

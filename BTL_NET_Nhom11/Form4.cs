@@ -9,7 +9,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Security.Cryptography;
+using BTL_NET_Nhom11.Resources;
 
 namespace BTL_NET_Nhom11
 {
@@ -23,90 +23,6 @@ namespace BTL_NET_Nhom11
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        string Strconn = @"Data Source=CHAOXA\MSSQLSERVER01;Initial Catalog=SQLQuanlykhachsan_gr11;Integrated Security=True";
-        string sql;
-        SqlConnection conn;
-        SqlCommand cmd;
-        SqlDataReader reader;
-
-        public void db_select(string strSql)
-        {
-            conn = new SqlConnection(Strconn);
-            conn.Open();
-            sql = $" {strSql} ";
-            cmd = new SqlCommand(sql, conn);
-            reader = cmd.ExecuteReader();
-        }
-
-        public void db_insert(string table, Dictionary<string, string> data)
-        {
-            string columns = "";
-            string values = "";
-
-            foreach (KeyValuePair<string, string> item in data)
-            {
-                columns += "[" + item.Key + "],";
-                values += "@" + item.Key + ",";
-            }
-
-            columns = columns.TrimEnd(',');
-            values = values.TrimEnd(',');
-
-            string query = "INSERT INTO " + table + " (" + columns + ") VALUES (" + values + ")";
-
-            using (SqlConnection connection = new SqlConnection(Strconn))
-            {
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    foreach (KeyValuePair<string, string> item in data)
-                    {
-                        command.Parameters.AddWithValue("@" + item.Key, item.Value);
-                    }
-
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
-            }
-        }
-
-        public void db_update(string table, Dictionary<string, string> data, string where)
-        {
-            string set_values = "";
-
-            foreach (KeyValuePair<string, string> item in data)
-            {
-                set_values += "[" + item.Key + "] = '" + item.Value + "',";
-            }
-
-            set_values = set_values.TrimEnd(',');
-
-            string query = "UPDATE " + table + " SET " + set_values + " WHERE " + where;
-            //MessageBox.Show(query);
-
-            using (SqlConnection conn = new SqlConnection(Strconn))
-            {
-                using (SqlCommand command = new SqlCommand(query, conn))
-                {
-                    conn.Open();
-                    command.ExecuteNonQuery();
-                }
-            }
-        }
-
-        public void db_delete(string table, string where)
-        {
-            using (SqlConnection connection = new SqlConnection(Strconn))
-            {
-                string query = "DELETE FROM " + table + " WHERE " + where;
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
-            }
         }
 
         private void btn_exit_Click(object sender, EventArgs e)
@@ -129,7 +45,7 @@ namespace BTL_NET_Nhom11
 
         public void hienthi()
         {
-            db_select("SELECT * FROM tbl_admin");
+            var reader = database.Instance.db_select("SELECT * FROM tbl_admin");
             int i = 0;
             while (reader.Read())
             {
@@ -175,7 +91,7 @@ namespace BTL_NET_Nhom11
                 data.Add("fullname", fullname);
                 data.Add("tel", tel);
 
-                db_insert("tbl_admin", data);
+                database.Instance.db_insert("tbl_admin", data);
 
                 hienthi();
             }
