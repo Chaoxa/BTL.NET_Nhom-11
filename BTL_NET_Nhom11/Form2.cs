@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BTL_NET_Nhom11.Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -167,6 +168,7 @@ namespace BTL_NET_Nhom11
             this.button5.TabIndex = 9;
             this.button5.Text = "TÍNH TIỀN PHÒNG";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // groupBox3
             // 
@@ -379,7 +381,7 @@ namespace BTL_NET_Nhom11
             // 
             // Form2
             // 
-            this.ClientSize = new System.Drawing.Size(1009, 548);
+            this.ClientSize = new System.Drawing.Size(1012, 548);
             this.Controls.Add(this.fulllname);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox3);
@@ -409,88 +411,6 @@ namespace BTL_NET_Nhom11
         }
 
         string Strconn = @"Data Source=CHAOXA\MSSQLSERVER01;Initial Catalog=SQLQuanlykhachsan_gr11;Integrated Security=True";
-        string query;
-        SqlCommand cmd;
-        SqlDataReader reader;
-
-        public void db_select(string strSql)
-        {
-            SqlConnection conn = new SqlConnection(Strconn);
-            conn.Open();
-            query = $" {strSql} ";
-            cmd = new SqlCommand(query, conn);
-            reader = cmd.ExecuteReader();
-        }
-
-        public void db_insert(string table, Dictionary<string, string> data)
-        {
-            string columns = "";
-            string values = "";
-
-            foreach (KeyValuePair<string, string> item in data)
-            {
-                columns += "[" + item.Key + "],";
-                values += "@" + item.Key + ",";
-            }
-
-            columns = columns.TrimEnd(',');
-            values = values.TrimEnd(',');
-
-            string query = "INSERT INTO " + table + " (" + columns + ") VALUES (" + values + ")";
-            //MessageBox.Show(query);
-
-            using (SqlConnection conn = new SqlConnection(Strconn))
-            {
-                using (SqlCommand command = new SqlCommand(query, conn))
-                {
-                    foreach (KeyValuePair<string, string> item in data)
-                    {
-                        command.Parameters.AddWithValue("@" + item.Key, item.Value);
-                    }
-
-                    conn.Open();
-                    command.ExecuteNonQuery();
-                }
-            }
-        }
-
-        public void db_update(string table, Dictionary<string, string> data, string where)
-        {
-            string set_values = "";
-
-            foreach (KeyValuePair<string, string> item in data)
-            {
-                set_values += "[" + item.Key + "] = '" + item.Value + "',";
-            }
-
-            set_values = set_values.TrimEnd(',');
-
-            string query = "UPDATE " + table + " SET " + set_values + " WHERE " + where;
-            //MessageBox.Show(query);
-
-            using (SqlConnection conn = new SqlConnection(Strconn))
-            {
-                using (SqlCommand command = new SqlCommand(query, conn))
-                {
-                    conn.Open();
-                    command.ExecuteNonQuery();
-                }
-            }
-        }
-
-        public void db_delete(string table, string where)
-        {
-            using (SqlConnection connection = new SqlConnection(Strconn))
-            {
-                string query = "DELETE FROM " + table + " WHERE " + where;
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
-            }
-        }
 
         public string GetUserName(int id)
         {
@@ -523,7 +443,7 @@ namespace BTL_NET_Nhom11
 
         public void hienthi()
         {
-            db_select("SELECT * FROM tbl_phong");
+            var reader = database.Instance.db_select("SELECT * FROM tbl_phong ");
             int i = 0;
             while (reader.Read())
             {
@@ -577,7 +497,7 @@ namespace BTL_NET_Nhom11
                 data.Add("DonGia", DonGia);
                 data.Add("TinhTrang", TinhTrang);
 
-                db_insert("tbl_phong", data);
+                database.Instance.db_insert("tbl_phong", data);
 
                 hienthi();
                 //conn.Close();
@@ -600,7 +520,7 @@ namespace BTL_NET_Nhom11
             data.Add("TenPhong", TenPhong);
             data.Add("DonGia", DonGia);
             data.Add("TinhTrang", TinhTrang);
-            db_update("tbl_phong", data, "MaPhong = '" + MaPhong + "'");
+            database.Instance.db_update("tbl_phong", data, "MaPhong = '" + MaPhong + "'");
 
             //conn.Close();
             hienthi();
@@ -610,7 +530,7 @@ namespace BTL_NET_Nhom11
         {
             string MaPhong = txtmaphong.Text;
             listView1.Items.Clear();
-            db_delete("tbl_phong", "MaPhong = '" + MaPhong + "'");
+            database.Instance.db_delete("tbl_phong", "MaPhong = '" + MaPhong + "'");
             //conn.Close();
             hienthi();
         }
@@ -638,6 +558,13 @@ namespace BTL_NET_Nhom11
             this.Hide();
             Form4 form4 = new Form4();
             form4.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form5 form5 = new Form5();
+            form5.Show();
         }
     }
 }

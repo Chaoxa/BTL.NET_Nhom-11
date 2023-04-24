@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BTL_NET_Nhom11.Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,82 +26,29 @@ namespace BTL_NET_Nhom11
         }
 
 
-        string Strconn = @"Data Source=CHAOXA\MSSQLSERVER01;Initial Catalog=SQLQuanlykhachsan_gr11;Integrated Security=True";
-        string sql;
-        SqlConnection conn;
-        SqlCommand cmd;
-        SqlDataReader reader;
-
-        public void db_select(string strSql)
-        {
-            conn = new SqlConnection(Strconn);
-            conn.Open();
-            sql = $" {strSql} ";
-            cmd = new SqlCommand(sql, conn);
-            reader = cmd.ExecuteReader();
-        }
-
-        public void db_insert(string table, Dictionary<string, string> data)
-        {
-            string columns = "";
-            string values = "";
-
-            foreach (KeyValuePair<string, string> item in data)
-            {
-                columns += "[" + item.Key + "],";
-                values += "@" + item.Key + ",";
-            }
-
-            columns = columns.TrimEnd(',');
-            values = values.TrimEnd(',');
-
-            string query = "INSERT INTO " + table + " (" + columns + ") VALUES (" + values + ")";
-
-            using (SqlConnection connection = new SqlConnection(Strconn))
-            {
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    foreach (KeyValuePair<string, string> item in data)
-                    {
-                        command.Parameters.AddWithValue("@" + item.Key, item.Value);
-                    }
-
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
-            }
-        }
-
-        public void db_delete(string table, string where)
-        {
-            using (SqlConnection connection = new SqlConnection(Strconn))
-            {
-                string query = "DELETE FROM " + table + " WHERE " + where;
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
-            }
-        }
-
+      
         public string GetTenPhong(int idPhong)
         {
             string tenPhong = "";
 
-            using (SqlConnection conn = new SqlConnection(Strconn))
+            //using (SqlConnection conn = new SqlConnection(Strconn))
+            //{
+            //    conn.Open();
+            //    SqlCommand cmd = new SqlCommand("SELECT tenphong FROM tbl_phong WHERE idphong = @idPhong", conn);
+            //    cmd.Parameters.AddWithValue("@idPhong", idPhong);
+
+            //    SqlDataReader reader = cmd.ExecuteReader();
+
+            //    if (reader.Read())
+            //    {
+            //        tenPhong = reader.GetString(reader.GetOrdinal("tenphong"));
+            //    }
+            //}
+
+            var reader = database.Instance.db_select("SELECT tenphong FROM tbl_phong WHERE idphong = @idPhong");
+            if (reader.Read())
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT tenphong FROM tbl_phong WHERE idphong = @idPhong", conn);
-                cmd.Parameters.AddWithValue("@idPhong", idPhong);
-
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    tenPhong = reader.GetString(reader.GetOrdinal("tenphong"));
-                }
+                tenPhong = reader.GetString(reader.GetOrdinal("tenphong"));
             }
 
             return tenPhong;
@@ -116,7 +64,7 @@ namespace BTL_NET_Nhom11
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            db_select("SELECT * FROM tbl_phong WHERE TinhTrang LIKE '%Trong%'");
+            var reader = database.Instance.db_select("SELECT * FROM tbl_phong WHERE TinhTrang LIKE '%Trong%'");
             List<Phong> danhSachPhong = new List<Phong>();
             while (reader.Read())
             {
@@ -153,15 +101,16 @@ namespace BTL_NET_Nhom11
 
             string thoigian = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
             DateTime thoiGianDateTime = DateTime.ParseExact(thoigian, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
-            string thoiGianString = thoiGianDateTime.ToString("yyyy-MM-dd HH:mm"); // Chuyển đổi thoiGianDateTime thành chuỗi định dạng thời gian theo định dạng "yyyy-MM-dd HH:mm:ss"
+            string batdau = thoiGianDateTime.ToString("yyyy-MM-dd HH:mm"); // Chuyển đổi thoiGianDateTime thành chuỗi định dạng thời gian theo định dạng "yyyy-MM-dd HH:mm:ss" cách chuyển về định dạng 24h
+
 
             data.Add("TenKhachHang", tenkhachhang);
             data.Add("SoDienThoai", sodienthoai);
             data.Add("Phong", phongthue);
-            data.Add("ThoiGian", thoiGianString); // Thêm chuỗi định dạng thời gian vào dictionary data
+            data.Add("ThoiGian", batdau); // Thêm chuỗi định dạng thời gian vào dictionary data
 
 
-            db_insert("tbl_dat_phong", data);
+            database.Instance.db_insert("tbl_dat_phong", data);
 
             hienthi();
         }
@@ -169,7 +118,7 @@ namespace BTL_NET_Nhom11
 
         public void hienthi()
         {
-            db_select("SELECT ID,TenKhachHang,Phong,SoDienThoai,ThoiGian FROM tbl_dat_phong");
+            var reader =database.Instance.db_select("SELECT ID,TenKhachHang,Phong,SoDienThoai,ThoiGian FROM tbl_dat_phong");
             int i = 0;
             while (reader.Read())
             {
@@ -192,7 +141,7 @@ namespace BTL_NET_Nhom11
             listView1.Items.Clear();
             string id = txtid.Text;
 
-            db_delete("tbl_dat_phong", "ID = '" + id + "'");
+            database.Instance.db_delete("tbl_dat_phong", "ID = '" + id + "'");
             //conn.Close();
             hienthi();
         }
