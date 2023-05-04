@@ -31,7 +31,27 @@ namespace BTL_NET_Nhom11.Resources
             private set { instance = value; }
         }
 
-        public SqlDataReader db_select(string strSql)
+    public int db_num_rows(string query)
+    {
+        int count = 0;
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+
+        SqlCommand command = new SqlCommand(query, conn);
+
+        SqlDataReader reader = command.ExecuteReader();
+        if (reader.Read())
+        {
+            count = (int)reader[0];
+        }
+
+        reader.Close();
+        conn.Close();
+
+        return count;
+    }
+
+    public SqlDataReader db_select(string strSql)
         {
             SqlConnection conn = new SqlConnection(strConn);
             conn.Open();

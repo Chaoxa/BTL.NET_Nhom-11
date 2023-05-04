@@ -80,28 +80,21 @@ namespace BTL_NET_Nhom11
             int ngay = duration.Days;
             int gio = duration.Hours;
             int phut = duration.Minutes;
-            int tongphut;
 
-             if(gio != 0 && ngay != 0)
-            {
-                 tongphut = duration.Days * 24 * 60 + phut;
-                //MessageBox.Show(tongphut.ToString());
-            }else if(gio != 0 && ngay == 0)
-            {
-                tongphut = gio * 60 + phut;
-            }
-            else
-            {
-             tongphut = phut;
-            }
+            int tongphut = ngay * 24 * 60 + gio * 60 + phut;
             int price = int.Parse(textBox2.Text)/24/60;
-            //MessageBox.Show(price.ToString());
+            //MessageBox.Show(tongphut.ToString());
 
             var total = tongphut * price;
           textBox6.Text=string.Format("Thời gian thuê phòng là {0} ngày {1} giờ {2} phút", ngay, gio, phut);
 
 
             textBox5.Text = total.ToString();
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

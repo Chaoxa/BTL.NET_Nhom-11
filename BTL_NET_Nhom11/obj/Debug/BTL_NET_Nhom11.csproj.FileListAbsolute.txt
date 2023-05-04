@@ -27,3 +27,5 @@ C:\Users\tranq\source\repos\BTL.NET_Nhom-11\BTL_NET_Nhom11\obj\Debug\BTL_NET_Nho
 C:\Users\tranq\source\repos\BTL.NET_Nhom-11\BTL_NET_Nhom11\obj\Debug\BTL_NET_Nhom11.exe
 C:\Users\tranq\source\repos\BTL.NET_Nhom-11\BTL_NET_Nhom11\obj\Debug\BTL_NET_Nhom11.pdb
 C:\Users\tranq\source\repos\BTL_NET_Nhom11\BTL_NET_Nhom11\obj\Debug\BTL_NET_Nhom11.Form5.resources
+C:\Users\tranq\source\repos\BTL_NET_Nhom11\BTL_NET_Nhom11\obj\Debug\BTL_NET_Nhom11.Form6.resources
+C:\Users\tranq\source\repos\BTL_NET_Nhom11\BTL_NET_Nhom11\obj\Debug\BTL_NET_Nhom11.Form7.resources

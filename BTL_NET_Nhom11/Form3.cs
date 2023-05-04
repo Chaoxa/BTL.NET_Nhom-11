@@ -93,7 +93,6 @@ namespace BTL_NET_Nhom11
 
             listView1.Items.Clear();
             Dictionary<string, string> data = new Dictionary<string, string>();
-            string id = txtid.Text;
             string tenkhachhang = txttenkhachhang.Text;
             string sodienthoai = txtsodienthoai.Text;
             string phongthue = cbophongthue.SelectedValue.ToString();
@@ -108,10 +107,11 @@ namespace BTL_NET_Nhom11
             data.Add("SoDienThoai", sodienthoai);
             data.Add("Phong", phongthue);
             data.Add("ThoiGian", batdau); // Thêm chuỗi định dạng thời gian vào dictionary data
-
-
             database.Instance.db_insert("tbl_dat_phong", data);
 
+            Dictionary<string, string> dulieu = new Dictionary<string, string>();
+            dulieu.Add("TinhTrang", "Có khách");
+            database.Instance.db_update("tbl_phong", dulieu, "MaPhong = '" + phongthue + "'");
             hienthi();
         }
 
@@ -151,6 +151,11 @@ namespace BTL_NET_Nhom11
             txtid.Text = listView1.SelectedItems[0].SubItems[0].Text;
             txttenkhachhang.Text = listView1.SelectedItems[0].SubItems[1].Text;
             txtsodienthoai.Text = listView1.SelectedItems[0].SubItems[3].Text;
+        }
+
+        private void txtid_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -160,6 +160,7 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(179, 20);
             this.textBox5.TabIndex = 1;
+            this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
             // textBox2
             // 
@@ -198,7 +199,7 @@
             this.groupBox2.Size = new System.Drawing.Size(680, 222);
             this.groupBox2.TabIndex = 32;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Thông tin chi tiết phòng";
+            this.groupBox2.Text = "Thông tin chi tiết";
             // 
             // listView1
             // 
@@ -221,22 +222,22 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Mã Phòng";
-            this.columnHeader1.Width = 100;
+            this.columnHeader1.Width = 120;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Tên Phòng";
-            this.columnHeader4.Width = 100;
+            this.columnHeader4.Width = 120;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Đơn giá";
-            this.columnHeader2.Width = 100;
+            this.columnHeader2.Width = 120;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Thời điểm thuê";
-            this.columnHeader5.Width = 150;
+            this.columnHeader5.Width = 120;
             // 
             // label7
             // 
@@ -274,6 +275,7 @@
             this.Controls.Add(this.btn_exit);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form5";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form5";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form5_FormClosed);
             this.Load += new System.EventHandler(this.Form5_Load);

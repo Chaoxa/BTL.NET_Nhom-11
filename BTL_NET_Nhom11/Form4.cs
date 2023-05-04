@@ -102,5 +102,24 @@ namespace BTL_NET_Nhom11
             }
 
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_Click(object sender, EventArgs e)
+        {
+            txtid.Text = listView1.SelectedItems[0].SubItems[0].Text;
+        }
+
+        private void btn_xoa_admin_Click(object sender, EventArgs e)
+        {
+            string id = txtid.Text;
+            database.Instance.db_delete("tbl_admin", "user_id = '" + id + "'");
+            listView1.Items.Clear();
+            hienthi();
+        }
+
     }
 }

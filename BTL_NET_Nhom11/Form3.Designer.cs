@@ -116,6 +116,7 @@
             this.txtid.Size = new System.Drawing.Size(24, 20);
             this.txtid.TabIndex = 1;
             this.txtid.Visible = false;
+            this.txtid.TextChanged += new System.EventHandler(this.txtid_TextChanged);
             // 
             // cbophongthue
             // 
@@ -168,12 +169,13 @@
             // 
             // btn_exit_rent
             // 
+            this.btn_exit_rent.BackColor = System.Drawing.Color.LawnGreen;
             this.btn_exit_rent.Location = new System.Drawing.Point(626, 238);
             this.btn_exit_rent.Name = "btn_exit_rent";
             this.btn_exit_rent.Size = new System.Drawing.Size(75, 27);
             this.btn_exit_rent.TabIndex = 12;
             this.btn_exit_rent.Text = "Trang chủ";
-            this.btn_exit_rent.UseVisualStyleBackColor = true;
+            this.btn_exit_rent.UseVisualStyleBackColor = false;
             this.btn_exit_rent.Click += new System.EventHandler(this.btn_exit_rent_Click);
             // 
             // btn_xoa_rent

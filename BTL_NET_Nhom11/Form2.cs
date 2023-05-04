@@ -123,6 +123,7 @@ namespace BTL_NET_Nhom11
             this.button8.TabIndex = 6;
             this.button8.Text = "THỐNG KÊ ";
             this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button1
             // 
@@ -157,6 +158,7 @@ namespace BTL_NET_Nhom11
             this.btn_list_guest.TabIndex = 8;
             this.btn_list_guest.Text = "DANH SÁCH KHÁCH HÀNG";
             this.btn_list_guest.UseVisualStyleBackColor = false;
+            this.btn_list_guest.Click += new System.EventHandler(this.btn_list_guest_Click);
             // 
             // button5
             // 
@@ -205,22 +207,22 @@ namespace BTL_NET_Nhom11
             // columnHeader3
             // 
             this.columnHeader3.Text = "Trạng Thái";
-            this.columnHeader3.Width = 120;
+            this.columnHeader3.Width = 140;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Đơn giá";
-            this.columnHeader2.Width = 120;
+            this.columnHeader2.Width = 140;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Tên Phòng";
-            this.columnHeader4.Width = 120;
+            this.columnHeader4.Width = 140;
             // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "Mã Phòng";
-            this.columnHeader1.Width = 120;
+            this.columnHeader1.Width = 140;
             // 
             // listView1
             // 
@@ -238,6 +240,7 @@ namespace BTL_NET_Nhom11
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             this.listView1.Click += new System.EventHandler(this.listView1_Click_1);
             // 
             // groupBox2
@@ -253,12 +256,13 @@ namespace BTL_NET_Nhom11
             // 
             // button4
             // 
+            this.button4.BackColor = System.Drawing.Color.Pink;
             this.button4.Location = new System.Drawing.Point(629, 246);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 27);
             this.button4.TabIndex = 9;
             this.button4.Text = "Thoát";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // btn_delete
@@ -565,6 +569,25 @@ namespace BTL_NET_Nhom11
             this.Hide();
             Form5 form5 = new Form5();
             form5.Show();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form6 form6 = new Form6();
+            form6.Show();
+        }
+
+        private void btn_list_guest_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form7 form7 = new Form7();
+            form7.Show();
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

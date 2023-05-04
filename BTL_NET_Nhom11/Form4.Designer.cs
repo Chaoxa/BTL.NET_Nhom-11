@@ -83,12 +83,13 @@
             // 
             // btn_exit
             // 
+            this.btn_exit.BackColor = System.Drawing.Color.Chartreuse;
             this.btn_exit.Location = new System.Drawing.Point(646, 282);
             this.btn_exit.Name = "btn_exit";
             this.btn_exit.Size = new System.Drawing.Size(89, 27);
             this.btn_exit.TabIndex = 19;
             this.btn_exit.Text = "Trang chủ";
-            this.btn_exit.UseVisualStyleBackColor = true;
+            this.btn_exit.UseVisualStyleBackColor = false;
             this.btn_exit.Click += new System.EventHandler(this.btn_exit_Click);
             // 
             // btn_xoa_admin
@@ -99,6 +100,7 @@
             this.btn_xoa_admin.TabIndex = 20;
             this.btn_xoa_admin.Text = "Xóa admin";
             this.btn_xoa_admin.UseVisualStyleBackColor = true;
+            this.btn_xoa_admin.Click += new System.EventHandler(this.btn_xoa_admin_Click);
             // 
             // btn_add_admin
             // 
@@ -128,7 +130,7 @@
             this.groupBox1.Size = new System.Drawing.Size(375, 238);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Nhập thông tin khách hàng";
+            this.groupBox1.Text = "Nhập thông tin admin";
             // 
             // label4
             // 
@@ -257,6 +259,8 @@
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.listView1.Click += new System.EventHandler(this.listView1_Click);
             // 
             // groupBox2
             // 
@@ -268,7 +272,7 @@
             this.groupBox2.Size = new System.Drawing.Size(680, 222);
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Thông tin chi tiết phòng";
+            this.groupBox2.Text = "Thông tin chi tiết";
             // 
             // Form4
             // 
